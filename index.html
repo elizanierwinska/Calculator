@@ -13,31 +13,31 @@
     <div class="container">
       <div id="outer-shell">
         <div id="calculator">
-          <input type="text" readonly="readonly" id="display">
+          <div id="display">0</div>
           <div class="buttons">
-            <button class="button" id="deletion">AC</button>
-            <button class="button" id="deletion">DE</button>
-            <button class="button">.</button>
-            <button class="button">&times;</button>
+            <button class="button" id="AC" data-action="clear">AC</button>
+            <button class="button" id="DE" data-action="delete">DE</button>
+            <button class="button" data-action="decimal">.</button>
+            <button class="button" data-action="multiply">&times;</button>
             <button class="button">7</button>
             <button class="button">8</button>
             <button class="button">9</button>
-            <button class="button">÷</button>
+            <button class="button" data-action="divide">÷</button>
             <button class="button">4</button>
             <button class="button">5</button>
             <button class="button">6</button>
-            <button class="button">+</button>
+            <button class="button" data-action="add">+</button>
             <button class="button">1</button>
             <button class="button">2</button>
             <button class="button">3</button>
-            <button class="button">-</button>
+            <button class="button" data-action="subtract">-</button>
             <button class="button">00</button>
             <button class="button">0</button>
-            <button id="equal-key">=</button>
+            <button id="equal-key" data-action="calculate">=</button>
           </div>
         </div>
       </div>
     </div>
-    <script href="index.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>

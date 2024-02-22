@@ -1,6 +1,9 @@
 body{
   margin: 0;
   padding: 0;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 .container{
@@ -78,14 +81,16 @@ body{
 }
 
 #display{
+  font-family: "VT323", monospace;
   margin: 40px 40px 20px 30px;;
   width: 420px;
   height: 60px;
   padding: 10px;
+  font-size: 80px;
   text-align: end;
+  color:black;
   border-radius: 30px;
   background-color:lightgray;
-  color:black;
   border: 3px solid #001b39;
   box-shadow: 2px 2px 10px 0.01px lightgray;
 }
@@ -95,10 +100,10 @@ body{
   box-shadow: 0 0 20px 0.1px #D8F3DC;
 }
 
-#deletion{
+#AC, #DE{
   color:#f48020;
 }
 
-#deletion:active{
+#AC:active, #DE:active{
   color: #d56e1a;
 }
