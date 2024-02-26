@@ -1,0 +1,114 @@
+body{
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+.container{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://plus.unsplash.com/premium_photo-1675747966997-73201c8d2450?q=80&w=3687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+#calculator{
+  width: 500px;
+  height: 700px;
+  background-color:#001D3D;
+  border-radius: 30px;
+  border: 3px solid black;
+  box-shadow: inset black 0px 0px 20px -6px; 
+}
+
+#outer-shell{
+  border-radius:40px;
+  border: 10px solid #00264d;
+}
+
+.buttons{
+  margin: 10px 0 0 45px;
+  display:grid;
+  grid-template-columns: repeat(4, 80px);
+  grid-gap: 30px;
+  grid-template-areas: 
+        "a a . ."
+        ". . . ."
+        ". . . ."
+        ". . . ."
+        ". . e e";
+}
+
+.button{
+  font-family: "VT323", monospace;
+  color:whitesmoke;
+  background-color: #012246;
+  height:80px;
+  font-size: 40px;
+  border-radius: 50%;
+  outline: none;
+  cursor:pointer;
+  border: none;
+  box-shadow: 0 0 9px black;
+}
+
+.button:active {
+  color:#D9D9D9;
+  background-color: #001b39;
+  box-shadow: 0 3px 5px black;
+  transform: translateY(4px);
+}
+
+#equal-key{
+  font-family: "VT323", monospace;
+  grid-area: e;
+  color: whitesmoke;
+  background-color: #f48020;
+  font-size: 80px;
+  border-radius: 40px;
+  border: none;
+  box-shadow: 0 0 9px black;
+}
+
+#equal-key:active{
+  color: #D9D9D9;
+  background-color: #d56e1a;
+  box-shadow: 0 3px 5px black;
+  transform: translateY(1px);
+}
+
+#display{
+  font-family: "VT323", monospace;
+  margin: 40px 40px 20px 30px;;
+  width: 420px;
+  height: 60px;
+  padding: 10px;
+  font-size: 80px;
+  text-align: end;
+  color:black;
+  border-radius: 30px;
+  background-color:lightgray;
+  border: 3px solid #001b39;
+  box-shadow: 2px 2px 10px 0.01px lightgray;
+}
+
+#display:focus{
+  outline: none;
+  box-shadow: 0 0 20px 0.1px #D8F3DC;
+}
+
+#AC{
+  grid-area: a;
+  color:#f48020;
+  font-size: 60px;
+  border-radius: 40px;
+}
+
+#AC:active{
+  color: #d56e1a;
+}
