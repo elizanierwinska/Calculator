@@ -35,7 +35,7 @@ body{
   grid-template-columns: repeat(4, 80px);
   grid-gap: 30px;
   grid-template-areas: 
-        ". . . ."
+        "a a . ."
         ". . . ."
         ". . . ."
         ". . . ."
@@ -100,10 +100,13 @@ body{
   box-shadow: 0 0 20px 0.1px #D8F3DC;
 }
 
-#AC, #DE{
+#AC{
+  grid-area: a;
   color:#f48020;
+  font-size: 60px;
+  border-radius: 40px;
 }
 
-#AC:active, #DE:active{
+#AC:active{
   color: #d56e1a;
 }
