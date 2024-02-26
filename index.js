@@ -1,18 +1,21 @@
-//problem to solve - js is not accurate enough with its numbers, so in case there's only one number at the end after the decimal point (in one of the numbers, not two), you should DEFINITELY just leave one decimal point after that, especially when it comes to addition, multiplication and subtraction
-
-//define constants for numbers within the functions
-
+const calculator = document.getElementById('calculator');
+const display = document.getElementById('display');
+const keys = calculator.querySelector('.buttons');
+const maxDisplayedNumLength = 12;
+const endOfResult = 13;
+const maxNumber = 999999999999;
+const ten = 10;
 
 const trimTheResult = (result) => {
   try{
     const stringified = result.toString();
-    console.log(stringified, stringified.indexOf('.'))
-    if(stringified.indexOf('.') === 12){
+
+    if(stringified.indexOf('.') === maxDisplayedNumLength){
       throw new Error ();
     }
-    if(result < 999999999999){
-      if(result.toString().length > 12){
-        return result.toString().slice(0, 13);
+    if(result < maxNumber){
+      if(result.toString().length > maxDisplayedNumLength){
+        return result.toString().slice(0, endOfResult);
       } else {
         return result;
       }
@@ -27,28 +30,23 @@ const trimTheResult = (result) => {
 const calculate = (n1, operator, n2) => {
   const firstNum = parseFloat(n1);
   const secondNum = parseFloat(n2);
-  const ten = 10;
+
   if (operator === 'add') {
-   const result = (firstNum * ten + secondNum * ten)/ten;
-   return trimTheResult(result);
+   return trimTheResult((firstNum * ten + secondNum * ten)/ten);
   }
-if (operator === 'subtract') {
-  const result = (firstNum * ten - secondNum * ten)/ten;
-  return trimTheResult(result);
- }
-if (operator === 'multiply') {
-  const result = ((firstNum * ten) * (secondNum * ten))/(ten*ten);
-  console.log((firstNum * ten * secondNum * ten)/ten * ten,result)
-  return trimTheResult(result);
- }
+  if (operator === 'subtract') {
+    return trimTheResult((firstNum * ten - secondNum * ten)/ten);
+  }
+  if (operator === 'multiply') {
+    return trimTheResult(((firstNum * ten) * (secondNum * ten))/(ten*ten));
+  }
   if (operator === 'divide') {
-    const result = ((firstNum * ten) / (secondNum * ten));
-    return trimTheResult(result);
+    return trimTheResult(((firstNum * ten) / (secondNum * ten)));
   }
 }
 
-const getKeyType = key => {
-  const { action } = key.dataset
+const getKeyType = (key) => {
+  const { action } = key.dataset;
   if (!action) return 'number';
   if (
     action === 'add' ||
@@ -76,7 +74,7 @@ const createResultString = (key, displayedNum, state) => {
     previousKeyType === 'calculate'){
         return keyContent;
     } else {
-      if(displayedNum.length < 13){
+      if(displayedNum.length < endOfResult){
         return displayedNum + keyContent;
       } else {
         return displayedNum;
@@ -85,9 +83,9 @@ const createResultString = (key, displayedNum, state) => {
   }
 
   if (keyType === 'decimal') {
-    if (!displayedNum.includes('.')) return displayedNum + '.'
+    if (!displayedNum.includes('.')) return displayedNum + '.';
     if (previousKeyType === 'operator' || previousKeyType === 'calculate') return '0.'
-    return displayedNum
+    return displayedNum;
   }
 
   if (keyType === 'operator') {
@@ -96,67 +94,62 @@ const createResultString = (key, displayedNum, state) => {
       previousKeyType !== 'operator' &&
       previousKeyType !== 'calculate'
       ? calculate(firstValue, operator, displayedNum)
-      : displayedNum
+      : displayedNum;
   }
 
-  if (keyType === 'clear') return 0
+  if (keyType === 'clear') return 0;
 
   if (keyType === 'calculate') {
     return firstValue
       ? previousKeyType === 'calculate'
         ? calculate(displayedNum, operator, modValue)
         : calculate(firstValue, operator, displayedNum)
-      : displayedNum
+      : displayedNum;
   }
 }
 
 const updateCalculatorState = (key, calculator, calculatedValue, displayedNum) => {
-  const keyType = getKeyType(key)
+  const keyType = getKeyType(key);
   const {
     firstValue,
     operator,
     modValue,
     previousKeyType
-  } = calculator.dataset
+  } = calculator.dataset;
 
-  calculator.dataset.previousKeyType = keyType
+  calculator.dataset.previousKeyType = keyType;
 
   if (keyType === 'operator') {
-    calculator.dataset.operator = key.dataset.action
+    calculator.dataset.operator = key.dataset.action;
     calculator.dataset.firstValue = firstValue &&
       operator &&
       previousKeyType !== 'operator' &&
       previousKeyType !== 'calculate'
       ? calculatedValue
-      : displayedNum
+      : displayedNum;
   }
 
   if (keyType === 'calculate') {
     calculator.dataset.modValue = firstValue && previousKeyType === 'calculate'
       ? modValue
-      : displayedNum
+      : displayedNum;
   }
 
   if (keyType === 'clear' && key.textContent === 'AC') {
-    calculator.dataset.firstValue = ''
-    calculator.dataset.modValue = ''
-    calculator.dataset.operator = ''
-    calculator.dataset.previousKeyType = ''
+    calculator.dataset.firstValue = '';
+    calculator.dataset.modValue = '';
+    calculator.dataset.operator = '';
+    calculator.dataset.previousKeyType = '';
   }
 }
 
-
-const calculator = document.getElementById('calculator');
-const display = document.getElementById('display')
-const keys = calculator.querySelector('.buttons');
-
 keys.addEventListener('click', e => {
-  if (!e.target.matches('button')) return
+  if (!e.target.matches('button')) return;
 
-  const key = e.target
-  const displayedNum = display.textContent
-  const resultString = createResultString(key, displayedNum, calculator.dataset)
+  const key = e.target;
+  const displayedNum = display.textContent;
+  const resultString = createResultString(key, displayedNum, calculator.dataset);
 
-  display.textContent = resultString
-  updateCalculatorState(key, calculator, resultString, displayedNum)
+  display.textContent = resultString;
+  updateCalculatorState(key, calculator, resultString, displayedNum);
 })
