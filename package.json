@@ -1,11 +1,13 @@
 {
   "scripts": {
-    "test": "jest"
+    "test": "jest --watchAll --config=jest.config.json"
   },
   "devDependencies": {
     "jest": "^29.7.0"
   },
   "dependencies": {
+    "@babel/core": "^7.23.9",
+    "babel-jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0"
   }
 }

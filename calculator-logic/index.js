@@ -1,26 +1,29 @@
 const maxDisplayedNumLength = 12;
 const endOfResult = 13;
 const maxNumber = 999999999999;
+const minNumber = -99999999999;
 const ten = 10;
 
 const trimTheResult = (result) => {
   try{
+    if(result === Infinity) return Infinity;
+
     const stringified = result.toString();
 
     if(stringified.indexOf('.') === maxDisplayedNumLength){
-      throw new Error ();
+      throw new Error ('Error');
     }
-    if(result < maxNumber){
+    if(result < maxNumber && result > minNumber){
       if(result.toString().length > maxDisplayedNumLength){
-        return result.toString().slice(0, endOfResult);
+        return Number(result.toString().slice(0, endOfResult));
       } else {
         return result;
       }
     } else{
-      throw new Error();
+      throw new Error('Error');
     }
   } catch (error) {
-    return error;
+    return error.message;
   }
 }
 
@@ -55,9 +58,11 @@ const getKeyType = (key) => {
   return action;
 }
 
-const createResultString = (key, displayedNum, state) => {
+function createResultString(key, displayedNum, state){
+  console.log(state)
   const keyContent = key.textContent;
   const keyType = getKeyType(key);
+  console.log(state)
   const {
     firstValue,
     operator,
@@ -140,19 +145,24 @@ const updateCalculatorState = (key, calculator, calculatedValue, displayedNum) =
   }
 }
 
+
 const calculator = document.getElementById('calculator');
 const display = document.getElementById('display');
-const keys = calculator.querySelector('.buttons');
+let keys;
+if(calculator !== null ){
+  keys = calculator.querySelector('.buttons');
+}
 
-keys.addEventListener('click', e => {
-  if (!e.target.matches('button')) return;
+document.addEventListener('DOMContentLoaded', () => {
+  keys.addEventListener('click', e => {
+    if (!e.target.matches('button')) return;
 
-  const key = e.target;
-  const displayedNum = display.textContent;
-  const resultString = createResultString(key, displayedNum, calculator.dataset);
+    const key = e.target;
+    const displayedNum = display.textContent;
+    const resultString = createResultString(key, displayedNum, calculator.dataset);
 
-  display.textContent = resultString;
-  updateCalculatorState(key, calculator, resultString, displayedNum);
+    display.textContent = resultString;
+    updateCalculatorState(key, calculator, resultString, displayedNum);
+  })
 })
-
-module.exports = trimTheResult;
+module.exports = {trimTheResult, calculate};
