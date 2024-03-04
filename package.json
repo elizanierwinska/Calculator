@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "jest --watchAll --config=jest.config.json"
+    "test": "jest --watchAll --config=jest.config.json",
   },
   "devDependencies": {
     "jest": "^29.7.0"
