@@ -21,12 +21,8 @@ open index.html
 
 If you want to run tests:
   ```sh
-  //if your package manager is:
-    //npm
     npm test
-    npm t
-
-    //yarn
+    //or
     yarn test
   ```
 
