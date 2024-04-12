@@ -9,23 +9,46 @@ Calculator
 
 ## Run the App
 
-First, change the directory by running the command:
+**Install all the dependencies:** 
+<br>
+*npm*
+```sh
+npm install 
+```
+*yarn*
+```sh
+yarn install
+```
+*pnpm*
+```sh
+pnpm install
+```
+<br>
+<br>
+
+**Change the directory by running the command**:
 ```sh
 cd calculator-logic
 ```
+<br>
+<br>
 
-In the calculator-logic directory, you can run: 
+**In the calculator-logic directory, you can run**: 
 ```sh
 open index.html
 ```
+<br>
+<br>
 
-If you want to run tests:
-  ```sh
-    npm test
-    //or
-    yarn test
-  ```
-
+**If you want to run tests:** <br>
+*npm*
+```sh
+npm test 
+```
+*yarn*
+```sh
+yarn test
+```
 
 ## Information about the project
 
