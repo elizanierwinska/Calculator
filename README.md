@@ -52,7 +52,7 @@ yarn test
 
 ## Information about the project
 
-Calculator app is a simple calculator for general purposes. You can use it to multiply, divide, add and subtract numbers. 
+Calculator app is a simple calculator for general purposes. You can use it to multiply, divide, add, and subtract numbers. 
 
 ### Features:
 * multiplication
